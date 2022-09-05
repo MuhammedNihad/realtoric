@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=realtoric
+POSTGRES_USER=WZdjBIhlWAyslWhqONncivfJOobCMCUy
+POSTGRES_PASSWORD=pVZhy0wh4RXCKKeyxUylYc5dhMCc13GdFTMYwoclM7fC1T0c7GVAp6iTYlCwzxrl
