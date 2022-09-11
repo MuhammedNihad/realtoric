@@ -67,10 +67,16 @@ class Property(TimeStampedModel):
         verbose_name_plural = "Properties"
 
     def __str__(self):
+        """
+        String representation of the model objects.
+        """
+
         return self.name
 
     def _generate_slug(self):
-        "Generate a unique slug for each property."
+        """
+        Generate a unique slug for each property.
+        """
 
         # max_length = self._meta.get_field("slug").max_length
         value = self.name
@@ -83,14 +89,18 @@ class Property(TimeStampedModel):
 
     def save(self, *args, **kwargs):
         """
-        To avoid generating the slug each time you save an existing model,
+        Prevent generating the slug each time you save an existing model,
         detect if it is an update of the model on each call of model's save() method.
         """
+
         if not self.pk:
             self._generate_slug()
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        "Return the absolute url of the property."
+        """
+        Return the absolute url of the property.
+        """
+
         # return reverse('properties:detail', kwargs={'slug': self.slug})
         return f"/property/{self.slug}/"
