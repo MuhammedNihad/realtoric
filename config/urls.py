@@ -15,7 +15,8 @@ urlpatterns = [
     # User management
     path("users/", include("realtoric.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
-    # Your stuff: custom urls includes go here
+    # Urls for the core app
+    path("", include("realtoric.core.urls", namespace="core")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 

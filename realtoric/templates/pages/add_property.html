@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% translate "Sell Property" %}{% endblock %}
+
+{% block inner %}
+
+    {% block content %}
+    <div class="row p-5">
+        <div class="col-md-6 offset-md-3">
+            <h1>{% translate "Post a property" %}</h1>
+            <form method="POST">
+              {% csrf_token %}
+              {{ form|crispy }}
+              <button class="primaryAction btn btn-primary" type="submit">{% translate "Post Now" %}</button>
+            </form>
+        </div>
+    </div>
+    {% endblock content%}
+
+{% endblock %}
