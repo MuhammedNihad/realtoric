@@ -4,9 +4,37 @@
 {% block title %}User: {{ object.username }}{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="container" style="margin-top:100px">
 
   <div class="row">
+    <div class="d-flex justify-content-center">
+    <div class="agent-box col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+      <div class="h-100 person">
+        <div class="person-contents">
+          <h3 class="mb-0">{{ object.username }}</h3>
+          <span class="meta d-block mb-3">{{ object.name }}</span><hr>
+          <p>{{ object.address }}</p>
+          <p>{{ object.phone }}</p>
+          <p>{{ object.email }}</p><hr>
+
+          {% if object == request.user %}
+            <!-- Action buttons -->
+            <div class="row">
+              <div class="col-sm-12">
+                <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
+                <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
+                <!-- Your Stuff: Custom user template urls -->
+              </div>
+            </div>
+            <!-- End Action buttons -->
+          {% endif %}
+
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+  {% comment %} <div class="row">
     <div class="col-sm-12">
 
       <h2>{{ object.username }}</h2>
@@ -15,20 +43,7 @@
       {% endif %}
     </div>
   </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
+{% endcomment %}
 
 </div>
 {% endblock content %}
