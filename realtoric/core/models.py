@@ -47,18 +47,27 @@ class Property(TimeStampedModel):
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posted_by"
     )
     name = models.CharField(max_length=255)
-    description = models.TextField(max_length=512)
+    description = models.CharField(max_length=512)
+    image = models.ImageField(
+        upload_to="uploads/properties/%Y/%m/", null=True, verbose_name="Image"
+    )
     type = models.CharField(
         max_length=50, choices=PropertyType.choices, default=PropertyType.HOUSE
     )
-    address = models.CharField(max_length=255)
+    address = models.TextField(max_length=512)
     city = models.CharField(max_length=255)
-    google_maps = models.URLField(max_length=512)
-    image = models.ImageField(upload_to="properties", blank=True, null=True)
+    google_maps = models.URLField(
+        max_length=512, blank=True, verbose_name="Google maps link (optional)"
+    )
+    contact_info = models.CharField(
+        max_length=255,
+        blank=True,
+        verbose_name="Contact number or email (optional)",
+        help_text="Your default phone number or email will be used if this field is not filled.",
+    )
     sale_status = models.CharField(
         max_length=50, choices=SaleStatus.choices, default=SaleStatus.FOR_SALE
     )
-    contact_info = models.CharField(max_length=255)
     slug = models.SlugField(unique=True)
 
     class Meta:
