@@ -9651,7 +9651,7 @@ textarea {
   position: relative;
   float: left;
   width: 100%;
-  border-radius: 7px;
+  border-radius: 50px;
   -webkit-box-shadow: 0 15px 30px -15px rgba(0, 0, 0, 0.1);
   box-shadow: 0 15px 30px -15px rgba(0, 0, 0, 0.1); }
 

@@ -13,8 +13,9 @@
             <h3 class="mb-0">Username: {{ object.username }}</h3>
             <span class="meta d-block mb-2">{{ object.name }}</span>
             {% if request.user.is_superuser %}
-              <span class="badge rounded-pill bg-primary mb-0">{% translate "Admin" %}</span><hr>
+              <span class="badge rounded-pill bg-primary mb-0">{% translate "Admin" %}</span>
             {% endif %}
+            <hr>
             <p>{{ object.address }}</p>
             <p>{{ object.phone }}</p>
             <p>{{ object.email }}</p><hr>
