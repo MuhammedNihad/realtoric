@@ -1,34 +1,39 @@
 {% extends "base.html" %}
-{% load static %}
+{% load static i18n %}
 
-{% block title %}User: {{ object.username }}{% endblock %}
+{% block title %}My account | {{ object.username }}{% endblock %}
 
 {% block content %}
-<div class="container">
-
+<div class="container" style="margin-top:100px">
   <div class="row">
-    <div class="col-sm-12">
+    <div class="d-flex justify-content-center">
+      <div class="agent-box col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0">
+        <div class="h-100 person">
+          <div class="person-contents">
+            <h3 class="mb-0">Username: {{ object.username }}</h3>
+            <span class="meta d-block mb-2">{{ object.name }}</span>
+            {% if request.user.is_superuser %}
+              <span class="badge rounded-pill bg-primary mb-0">{% translate "Admin" %}</span><hr>
+            {% endif %}
+            <p>{{ object.address }}</p>
+            <p>{{ object.phone }}</p>
+            <p>{{ object.email }}</p><hr>
 
-      <h2>{{ object.username }}</h2>
-      {% if object.name %}
-        <p>{{ object.name }}</p>
-      {% endif %}
+            {% if object == request.user %}
+              <!-- Action buttons -->
+              <div class="row">
+                <div class="col-sm-12">
+                  <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">{% translate "Update" %}</a>
+                  <a class="btn btn-danger" href="{% url 'account_logout' %}" role="button">{% translate "Sign Out" %}</a>
+                </div>
+              </div>
+              <!-- End Action buttons -->
+            {% endif %}
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-
-{% if object == request.user %}
-<!-- Action buttons -->
-<div class="row">
-
-  <div class="col-sm-12">
-    <a class="btn btn-primary" href="{% url 'users:update' %}" role="button">My Info</a>
-    <a class="btn btn-primary" href="{% url 'account_email' %}" role="button">E-Mail</a>
-    <!-- Your Stuff: Custom user template urls -->
-  </div>
-
-</div>
-<!-- End Action buttons -->
-{% endif %}
-
 </div>
 {% endblock content %}
