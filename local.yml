@@ -34,6 +34,8 @@ services:
       - realtoric_local_postgres_data_backups:/backups:z
     env_file:
       - ./.envs/.local/.postgres
+    ports:
+      - "5433:5432"
 
   docs:
     image: realtoric_local_docs
