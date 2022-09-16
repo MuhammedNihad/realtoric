@@ -76,8 +76,9 @@
         <div class="container">
           <div class="menu-bg-wrap">
             <div class="site-navigation">
-              <a href="{% url 'home' %}" class="logo m-0 float-start">Realtoric</a>
-
+              <a href={% url 'home' %}>
+                <img src="{% static 'images/logos/logo.png' %}" alt="Logo" class="logo m-0 float-start"></img>
+              </a>
               <ul
                 class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
               >
