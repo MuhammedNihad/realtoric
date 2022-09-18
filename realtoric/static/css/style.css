@@ -4011,6 +4011,7 @@ textarea.form-control-lg {
   padding: 1rem 1rem; }
 
 .card-title {
+  color: #8B85C1;
   margin-bottom: 0.5rem; }
 
 .card-subtitle {
@@ -4064,6 +4065,8 @@ textarea.form-control-lg {
 
 .card-img,
 .card-img-top {
+  height: 30vh;
+  object-fit: cover;
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px); }
 

@@ -44,4 +44,64 @@
       </div>
     </div> <!-- Hero section ends -->
 
+    <!-- Properties list section -->
+    <div class="section">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <h2 class="font-weight-bold text-primary heading">
+              Properties
+            </h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row row-cols-1 row-cols-md-3 g-4">
+
+            {% for property in properties %}
+            <div class="col">
+              <div class="card h-100">
+                <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
+                <div class="card-body">
+                  <h3 class="card-title">{{ property.name|title }}</h4>
+                  <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                  <div class="specs d-flex mt-4">
+                    <span class="d-block d-flex align-items-center me-3">
+
+                      {% if property.type == "House" %}
+                        <i class="fa-solid fa-house"></i>
+                        <span class="caption ms-2">House</span>
+
+                      {% elif property.type == "Apartment" %}
+                        <i class="fa-solid fa-building"></i>
+                        <span class="caption ms-2">Apartment</span>
+
+                      {% elif property.type == "Villa" %}
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                        <span class="caption ms-2">Villa</span>
+
+                      {% elif property.type == "Commercial" %}
+                        <i class="fa-solid fa-city"></i>
+                        <span class="caption ms-2">Commercial</span>
+
+                      {% else %}
+                        <i class="fa-solid fa-earth"></i>
+                        <span class="caption ms-2">Land</span>
+                      {% endif %}
+
+                    </span>
+                    <span class="d-block d-flex align-items-center">
+                      <i class="fa-solid fa-location-dot"></i>
+                      <span class="caption ms-2">{{ property.city|upper }}</span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div> <!-- Properties list section -->
+
 {% endblock content %}
