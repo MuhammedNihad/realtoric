@@ -24,7 +24,10 @@ class PostPropertyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields["name"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Enter a name/title..."}
+            {
+                "class": "form-control",
+                "placeholder": "Enter a name/title for property...",
+            }
         )
         self.fields["description"].widget.attrs.update(
             {
