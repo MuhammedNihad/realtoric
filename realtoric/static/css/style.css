@@ -9742,6 +9742,33 @@ textarea {
         z-index: 1;
         background: rgba(34, 34, 34, 0.4); }
 
+.search-result {
+  margin-top: 40px;
+}
+
+.search-result .form-search .form-control {
+  padding-top: 18px;
+  padding-bottom: 18px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border: 1px solid #8B85C1;
+  border-radius: 30px; }
+  .search-result .form-search .form-control:hover, .search-result .form-search .form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+.search-result .form-search .form-control {
+  margin-right: 10px; }
+.search-result .form-search .btn {
+  background-color: #8B85C1;
+  padding-left: 30px;
+  padding-right: 30px;
+  color: #fff; }
+  .search-result .form-search .btn:hover, .search-result .form-search .btn:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none; }
+
 .section {
   padding-top: 4rem;
   padding-bottom: 4rem; }

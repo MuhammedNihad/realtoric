@@ -3,62 +3,44 @@
 
 {% block content %}
 
-    <!-- Hero section -->
-    <div class="hero">
-      <div class="hero-slide">
-        <div
-          class="img overlay"
-          style="background-image: url({% static 'images/hero_bg_3.jpg' %});"
-        ></div>
-        <div
-          class="img overlay"
-          style="background-image: url({% static 'images/hero_bg_2.jpg' %});"
-        ></div>
-        <div
-          class="img overlay"
-          style="background-image: url({% static 'images/hero_bg_1.jpg' %});"
-        ></div>
-      </div>
-
-      <div class="container">
-        <div class="row justify-content-center align-items-center">
-          <div class="col-lg-9 text-center">
-            <h1 class="heading" data-aos="fade-up">
-              Easiest way to find your dream House, Apartment, Villa, Commercial and Land.
-            </h1>
-            <form
-              action="{% url 'core:search_results' %}"
-              method="GET"
-              class="narrow-w form-search d-flex align-items-stretch mb-3"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <input
-                type="text"
-                name="search"
-                class="form-control px-4"
-                placeholder="Find Houses, Apartments, Land and more..."
-              />
-              <button type="submit" class="btn btn-primary">Search</button>
-            </form>
-          </div>
+<div class="container" style="margin-top:100px">
+  <div class="row">
+    <div class="container">
+      <div class="row search-result justify-content-center align-items-center">
+        <div class="col-lg-11 text-center">
+          <form
+            action="{% url 'core:search_results' %}"
+            method="GET"
+            class="narrow-w form-search d-flex align-items-stretch"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <input
+              type="text"
+              name="search"
+              class="form-control px-4"
+              value="{{ request.GET.search }}"
+              placeholder="Find Houses, Apartments, Land and more..."
+            />
+            <button type="submit" class="btn btn-primary">Search</button>
+          </form>
         </div>
       </div>
-    </div> <!-- Hero section ends -->
-
+    </div>
     <!-- Properties list section -->
     <div class="section">
       <div class="container">
         <div class="row align-items-center">
           <div class="col-lg-6">
             <h2 class="font-weight-bold text-primary heading">
-              Properties
+              Search results for "{{ request.GET.search }}":
             </h2>
           </div>
         </div>
         <div class="row">
           <div class="row row-cols-1 row-cols-md-3 g-4">
 
+            {% if properties %}
             {% for property in properties %}
             <a href="{{ property.get_absolute_url }}">
               <div class="col">
@@ -101,11 +83,22 @@
                 </div>
               </div>
             </a>
-            {% endfor %}
-
           </div>
+          {% endfor %}
+          {% else %}
+          <div class="col">
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <h4>
+                  No results found for "{{ request.GET.search }}"!
+                </h4>
+            </div>
+          </div>
+          {% endif %}
+
         </div>
       </div>
     </div> <!-- Properties list section -->
+  </div>
+</div>
 
 {% endblock content %}
