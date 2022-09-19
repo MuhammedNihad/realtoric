@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static i18n %}
+
+{% block content %}
+<div class="container" style="margin-top:100px">
+  <div class="row">
+    <div class="section">
+      <div class="container">
+        <div class="row justify-content-between">
+          <div class="col-lg-7">
+            <div class="img-property-slide-wrap">
+              <div class="img-property-slide">
+                <img src="{{ property.image.url }}" alt="Image" class="img-fluid" />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <h2 class="heading text-primary">{{ property.name|title }}</h2>
+            {% if property.type == "House" %}
+              <h5 class="meta"><i class="fa-solid fa-house me-2"></i>{% translate "House" %}</h5>
+
+              {% elif property.type == "Apartment" %}
+              <h5 class="meta"><i class="fa-solid fa-building me-2"></i>{% translate "Apartment" %}</h5>
+
+              {% elif property.type == "Villa" %}
+              <h5 class="meta"><i class="fa-solid fa-house-chimney-window me-2"></i>{% translate "Villa" %}</h5>
+
+              {% elif property.type == "Commercial" %}
+              <h5 class="meta"><i class="fa-solid fa-city me-2"></i>{% translate "Commercial" %}</h5>
+
+              {% else %}
+              <h5 class="meta"><i class="fa-solid fa-earth me-2"></i>{% translate "Land" %}</h5>
+            {% endif %}
+            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ property.city|upper }}</h5>
+            <h5 class="text-black-50">{{ property.description|capfirst }}</h5>
+            <div class="d-block agent-box p-5">
+              <div class="text">
+                <h2 class="mb-0">{{ property.user|capfirst }}</h2>
+                <h3 class="meta mb-4">{{ property.user.username }}</h3>
+
+                {% if request.user.is_authenticated %}
+                  <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ property.address|capfirst }}</h3>
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ property.google_maps|urlize }}</h3>
+                  <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
+                    {% if property.contact_info %}
+                      {{ property.contact_info }}
+                    {% else %}
+                      {{ property.user.phone }} <br> {{ property.user.email|urlize }}
+                    {% endif %}
+                  </h3>
+                {% else %}
+                <h6><a href="{% url 'account_login' %}">{% translate "Sign in to view Address & Contact Information" %}</a></h6>
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

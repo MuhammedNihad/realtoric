@@ -2,7 +2,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, ListView
+from django.views.generic import CreateView, DetailView, ListView
 
 from .forms import PostPropertyForm
 from .models import Property
@@ -22,6 +22,19 @@ class PropertyListView(ListView):
 
 
 property_list_view = PropertyListView.as_view()
+
+
+class PropertyDetailView(DetailView):
+    """
+    Render property details.
+    """
+
+    model = Property
+    context_object_name = "property"
+    template_name = "pages/property_detail.html"
+
+
+property_detail_view = PropertyDetailView.as_view()
 
 
 class PostPropertyView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
