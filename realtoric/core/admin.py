@@ -15,3 +15,9 @@ class PropertyAdmin(admin.ModelAdmin):
         model = Property
         verbose_name = "Property"
         verbose_name_plural = "Properties"
+
+
+# Customize the admin site title and header
+admin.site.site_header = "Realtoric Admin Panel"
+admin.site.site_title = "Realtoric Admin Panel"
+admin.site.index_title = "Welcome to Realtoric Panel"
