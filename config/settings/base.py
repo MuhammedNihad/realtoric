@@ -62,6 +62,7 @@ DJANGO_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     # "django.contrib.humanize", # Handy template tags
+    "jet",
     "django.contrib.admin",
     "django.forms",
 ]

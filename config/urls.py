@@ -5,6 +5,8 @@ from django.urls import include, path
 from django.views import defaults as default_views
 
 urlpatterns = [
+    # Django JET URLS
+    path("jet/", include("jet.urls", "jet")),
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
