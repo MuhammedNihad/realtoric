@@ -63,9 +63,13 @@
             <a href="{{ property.get_absolute_url }}">
               <div class="col">
                 <div class="card h-100">
-                    <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
-                    <div class="card-body">
-                      <h3 class="card-title">{{ property.name|title }}</h4>
+                  {% for image_as_thumbnail in property.images.all %}
+                    {% if forloop.first %}
+                    <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.name }}">
+                    {% endif %}
+                  {% endfor %}
+                  <div class="card-body">
+                    <h3 class="card-title">{{ property.name|title }}</h4>
                     <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
                     <div class="specs d-flex mt-4">
                       <span class="d-block d-flex align-items-center me-3">

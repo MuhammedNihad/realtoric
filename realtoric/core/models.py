@@ -48,9 +48,9 @@ class Property(TimeStampedModel):
     )
     name = models.CharField(max_length=255)
     description = models.CharField(max_length=512)
-    image = models.ImageField(
-        upload_to="uploads/properties/%Y/%m/", null=True, verbose_name="Image"
-    )
+    # image = models.ImageField(
+    #     upload_to="uploads/properties/%Y/%m/", null=True, verbose_name="Image"
+    # )
     type = models.CharField(
         max_length=50, choices=PropertyType.choices, default=PropertyType.HOUSE
     )
@@ -113,3 +113,33 @@ class Property(TimeStampedModel):
 
         # return reverse('properties:detail', kwargs={'slug': self.slug})
         return f"/property/{self.slug}/"
+
+
+class PropertyImage(TimeStampedModel):
+    """
+    Inherited model for property images.
+    """
+
+    property = models.ForeignKey(
+        Property, on_delete=models.CASCADE, related_name="images"
+    )
+    image = models.ImageField(upload_to="uploads/properties/%Y/%m/")
+
+    class Meta:
+        ordering = ["-created"]
+        verbose_name = "Property image"
+        verbose_name_plural = "Property images"
+
+    def __str__(self):
+        """
+        String representation of the model objects.
+        """
+
+        return f"{self.property.name} image"
+
+    def get_absolute_url(self):
+        """
+        Return the absolute url of the property image.
+        """
+
+        return f"/property-image/{self.property.slug}/"

@@ -18,7 +18,7 @@ class PropertyListView(ListView):
     context_object_name = "properties"
     queryset = Property.objects.filter(
         sale_status=Property.SaleStatus.FOR_SALE
-    ).order_by("-created")[0:30]
+    ).order_by("-created")
     template_name = "pages/home.html"
 
 
@@ -76,6 +76,12 @@ class PostPropertyView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        property_data = form.save()
+
+        # Save the property's images
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.images.create(property=property_data, image=image)
         return super().form_valid(form)
 
 

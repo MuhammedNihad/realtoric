@@ -65,7 +65,8 @@
 				autoplay: true,
 				controls: false,
 				nav: true,
-				autoplayButtonOutput: false
+				autoplayButtonOutput: false,
+				mouseDrag: true,
 			});
 		}
 

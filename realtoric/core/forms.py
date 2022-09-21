@@ -8,50 +8,64 @@ class PostPropertyForm(forms.ModelForm):
     Form to create a new Property.
     """
 
+    images = forms.FileField(
+        widget=forms.ClearableFileInput(
+            attrs={"class": "form-control", "multiple": True}
+        )
+    )
+
     class Meta:
         model = Property
         fields = [
             "name",
             "description",
-            "image",
             "type",
             "address",
             "city",
             "google_maps",
             "contact_info",
         ]
+        widgets = {
+            "name": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter a name for property...",
+                }
+            ),
+            "description": forms.Textarea(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter a description. eg: 2BHK, 50 cent, 3 floors...",
+                }
+            ),
+            "type": forms.Select(attrs={"class": "form-control"}),
+            "address": forms.Textarea(
+                attrs={"class": "form-control", "placeholder": "Enter address..."}
+            ),
+            "city": forms.TextInput(
+                attrs={"class": "form-control", "placeholder": "Enter city..."}
+            ),
+            "google_maps": forms.URLInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Copy and paste Google maps link...",
+                }
+            ),
+            "contact_info": forms.TextInput(
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "Enter contact number or email...",
+                }
+            ),
+        }
 
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.fields["name"].widget.attrs.update(
-            {
-                "class": "form-control",
-                "placeholder": "Enter a name/title for property...",
-            }
-        )
-        self.fields["description"].widget.attrs.update(
-            {
-                "class": "form-control",
-                "placeholder": "Enter description. eg: 2BHK, 50 cent, 3 floors...",
-            }
-        )
-        self.fields["image"].widget.attrs.update({"class": "form-control"})
-        self.fields["type"].widget.attrs.update({"class": "form-control"})
-        self.fields["address"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Enter address..."}
-        )
-        self.fields["city"].widget.attrs.update(
-            {
-                "class": "form-control",
-                "placeholder": "City where property is located...",
-            }
-        )
-        self.fields["google_maps"].widget.attrs.update(
-            {
-                "class": "form-control",
-                "placeholder": "Copy and paste link from google maps...",
-            }
-        )
-        self.fields["contact_info"].widget.attrs.update(
-            {"class": "form-control", "placeholder": "Contact number or email..."}
-        )
+    field_order = [
+        "name",
+        "description",
+        "type",
+        "images",
+        "address",
+        "city",
+        "google_maps",
+        "contact_info",
+    ]

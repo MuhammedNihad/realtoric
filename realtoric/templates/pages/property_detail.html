@@ -10,7 +10,11 @@
           <div class="col-lg-7">
             <div class="img-property-slide-wrap">
               <div class="img-property-slide">
-                <img src="{{ property.image.url }}" alt="Image" class="img-fluid" />
+                {% for property_image in property.images.all %}
+                  <img src="{{ property_image.image.url }}" alt="Images of {{ property }}" class="img-fluid" width="300" height="300"/>
+                  {% empty %}
+                    <h3 class="text-center">No Images Found</h3>
+                {% endfor %}
               </div>
             </div>
           </div>
