@@ -41,23 +41,17 @@
               <div class="text">
                 <h2 class="mb-0">{{ property.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ property.user.username }}</h3>
-
-                {% if request.user.is_authenticated %}
-                  <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ property.address|capfirst }}</h3>
-                  {% if property.google_maps %}
-                    <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ property.google_maps|urlize }}</h3>
-                  {% endif %}
-                  <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
-                    {% if property.contact_info %}
-                      {{ property.contact_info }}
-                    {% else %}
-                      {{ property.user.phone }} <br> {{ property.user.email|urlize }}
-                    {% endif %}
-                  </h3>
-                {% else %}
-                <h6><a href="{% url 'account_login' %}?next={{ property.get_absolute_url }}">{% translate "Sign in to view Address & Contact Information" %}</a></h6>
+                <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ property.address|capfirst }}</h3>
+                {% if property.google_maps %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ property.google_maps|urlize }}</h3>
                 {% endif %}
-
+                <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
+                  {% if property.contact_info %}
+                    {{ property.contact_info }}
+                  {% else %}
+                    {{ property.user.phone }} <br> {{ property.user.email|urlize }}
+                  {% endif %}
+                </h3>
               </div>
             </div>
           </div>
