@@ -3,6 +3,7 @@ from django.contrib import admin
 from .models import (
     Apartment,
     ApartmentImage,
+    City,
     Commercial,
     CommercialImage,
     House,
@@ -14,13 +15,19 @@ from .models import (
 )
 
 
+@admin.register(City)
+class CityAdmin(admin.ModelAdmin):
+    list_display = ["name"]
+    list_filter = ["name"]
+    search_fields = ["name"]
+    ordering = ["name"]
+
+
 @admin.register(Apartment)
 class ApartmentAdmin(admin.ModelAdmin):
     list_display = ("id", "ad_title", "user", "listed_on", "modified_on")
     list_filter = (
-        "sell_or_rent",
         "sale_status",
-        "rent_status",
         "listed_on",
         "modified_on",
     )
@@ -52,9 +59,7 @@ class ApartmentImageAdmin(admin.ModelAdmin):
 class CommercialAdmin(admin.ModelAdmin):
     list_display = ("id", "ad_title", "user", "listed_on", "modified_on")
     list_filter = (
-        "sell_or_rent",
         "sale_status",
-        "rent_status",
         "listed_on",
         "modified_on",
     )
@@ -86,9 +91,7 @@ class CommercialImageAdmin(admin.ModelAdmin):
 class HouseAdmin(admin.ModelAdmin):
     list_display = ("id", "ad_title", "user", "listed_on", "modified_on")
     list_filter = (
-        "sell_or_rent",
         "sale_status",
-        "rent_status",
         "listed_on",
         "modified_on",
     )
@@ -120,9 +123,7 @@ class HouseImageAdmin(admin.ModelAdmin):
 class LandAdmin(admin.ModelAdmin):
     list_display = ("id", "ad_title", "user", "listed_on", "modified_on")
     list_filter = (
-        "sell_or_rent",
         "sale_status",
-        "rent_status",
         "listed_on",
         "modified_on",
     )
@@ -154,9 +155,7 @@ class LandImageAdmin(admin.ModelAdmin):
 class VillaAdmin(admin.ModelAdmin):
     list_display = ("id", "ad_title", "user", "listed_on", "modified_on")
     list_filter = (
-        "sell_or_rent",
         "sale_status",
-        "rent_status",
         "listed_on",
         "modified_on",
     )
