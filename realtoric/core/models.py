@@ -21,11 +21,11 @@ class CountChoice(models.TextChoices):
     Integer choices for the number of bedrooms and bathrooms.
     """
 
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    FOUR = 4
-    FOUR_PLUS = "4+"
+    ONE = 1, "1"
+    TWO = 2, "2"
+    THREE = 3, "3"
+    FOUR = 4, "4"
+    FOUR_PLUS = "4+", "4+"
 
 
 class CountWithZeroChoice(models.TextChoices):
