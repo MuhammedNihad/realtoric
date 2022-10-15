@@ -28,18 +28,6 @@ class CountChoice(models.TextChoices):
     FOUR_PLUS = "4+", "4+"
 
 
-class CountWithZeroChoice(models.TextChoices):
-    """
-    Integer choices with zero for the number of car parking.
-    """
-
-    ZERO = 0
-    ONE = 1
-    TWO = 2
-    THREE = 3
-    THREE_PLUS = "3+"
-
-
 class YesNoChoice(models.TextChoices):
     """
     Yes/No choices.
