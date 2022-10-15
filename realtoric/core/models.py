@@ -40,6 +40,15 @@ class CountWithZeroChoice(models.TextChoices):
     THREE_PLUS = "3+"
 
 
+class YesNoChoice(models.TextChoices):
+    """
+    Yes/No choices.
+    """
+
+    YES = "Yes"
+    NO = "No"
+
+
 class TimeStampMixin(models.Model):
     """
     Abstract model class for time stamping.
@@ -406,6 +415,12 @@ class Land(PropertyBasicDetailMixin, TimeStampMixin):
     plot_area = models.PositiveIntegerField(default=0, verbose_name="Area (cent)")
     length = models.PositiveIntegerField(default=0, verbose_name="Length (ft)")
     breadth = models.PositiveIntegerField(default=0, verbose_name="Breadth (ft)")
+    road_accessible = models.CharField(
+        max_length=20,
+        choices=YesNoChoice.choices,
+        default=YesNoChoice.YES,
+        verbose_name="Road Accessible",
+    )
 
     class Meta:
         ordering = ["-listed_on"]
