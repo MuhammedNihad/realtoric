@@ -12,11 +12,19 @@
   <div class="container-fluid" style="margin-top:100px">
     <div class="row p-5">
       <div class="col-md-6 offset-md-3">
+        {% if object %}
+        <h1>{% translate "Update a property" %}</h1>
+        {% else %}
         <h1>{% translate "Post a property" %}</h1>
+        {% endif %}
         <form method="POST" enctype="multipart/form-data">
           {% csrf_token %}
           {{ form|crispy }}
+          {% if object %}
+          <button class="primaryAction btn btn-primary" type="submit">{% translate "Update Now" %}</button>
+          {% else %}
           <button class="primaryAction btn btn-primary" type="submit">{% translate "Post Now" %}</button>
+          {% endif %}
         </form>
       </div>
     </div>

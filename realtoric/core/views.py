@@ -1,9 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
-from django.urls import reverse_lazy
+from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.views.generic import CreateView, DetailView, ListView, TemplateView
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 from .forms import (
     ApartmentPostForm,
@@ -271,3 +277,88 @@ class VillaDetailView(DetailView):
 
 
 villa_detail_view = VillaDetailView.as_view()
+
+
+class ApartmentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render form to update an apartment.
+    """
+
+    model = Apartment
+    form_class = ApartmentPostForm
+    template_name = "pages/post_property.html"
+    success_message = _("Apartment updated successfully")
+
+    def get_success_url(self):
+        return reverse("core:apartment_detail", kwargs={"slug": self.object.slug})
+
+
+apartment_update_view = ApartmentUpdateView.as_view()
+
+
+class CommercialUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render form to update a commercial.
+    """
+
+    model = Commercial
+    form_class = CommercialPostForm
+    template_name = "pages/post_property.html"
+    success_message = _("Commercial updated successfully")
+
+    def get_success_url(self):
+        return reverse("core:commercial_detail", kwargs={"slug": self.object.slug})
+
+
+commercial_update_view = CommercialUpdateView.as_view()
+
+
+class HouseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render form to update a house.
+    """
+
+    model = House
+    form_class = HousePostForm
+    template_name = "pages/post_property.html"
+    success_message = _("House updated successfully")
+
+    def get_success_url(self):
+        return reverse("core:house_detail", kwargs={"slug": self.object.slug})
+
+
+house_update_view = HouseUpdateView.as_view()
+
+
+class LandUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render form to update a land.
+    """
+
+    model = Land
+    form_class = LandPostForm
+    template_name = "pages/post_property.html"
+    success_message = _("Land updated successfully")
+
+    def get_success_url(self):
+        return reverse("core:land_detail", kwargs={"slug": self.object.slug})
+
+
+land_update_view = LandUpdateView.as_view()
+
+
+class VillaUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+    """
+    Render form to update a villa.
+    """
+
+    model = Villa
+    form_class = VillaPostForm
+    template_name = "pages/post_property.html"
+    success_message = _("Villa updated successfully")
+
+    def get_success_url(self):
+        return reverse("core:villa_detail", kwargs={"slug": self.object.slug})
+
+
+villa_update_view = VillaUpdateView.as_view()

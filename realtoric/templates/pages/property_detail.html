@@ -47,7 +47,7 @@
                 </h3>
               </div><hr>
               <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                <a class="btn btn-primary" href="{% url 'core:apartment_update' apartment.slug %}" role="button">{% translate "Update" %}</a>
                 {% if apartment.sale_status != "For Sale" %}
                 <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
                 {% else %}
@@ -96,7 +96,7 @@
                 </h3>
               </div><hr>
               <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                <a class="btn btn-primary" href="{% url 'core:commercial_update' commercial.slug %}" role="button">{% translate "Update" %}</a>
                 {% if commercial.sale_status != "For Sale" %}
                 <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
                 {% else %}
@@ -146,7 +146,7 @@
                 </h3>
               </div><hr>
               <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                <a class="btn btn-primary" href="{% url 'core:house_update' house.slug %}" role="button">{% translate "Update" %}</a>
                 {% if house.sale_status != "For Sale" %}
                 <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
                 {% else %}
@@ -197,7 +197,7 @@
                 </h3>
               </div><hr>
               <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                <a class="btn btn-primary" href="{% url 'core:land_update' land.slug %}" role="button">{% translate "Update" %}</a>
                 {% if land.sale_status != "For Sale" %}
                 <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
                 {% else %}
@@ -247,7 +247,7 @@
                 </h3>
               </div><hr>
               <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                <a class="btn btn-primary" href="{% url 'core:villa_update' villa.slug %}" role="button">{% translate "Update" %}</a>
                 {% if villa.sale_status != "For Sale" %}
                 <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
                 {% else %}
