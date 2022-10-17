@@ -22,11 +22,15 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">{{ apartment.ad_title|title }}</h2>
-            <h5 class="meta"><i class="fa-solid fa-building me-2"></i>{% translate "Apartment" %}</h5>
-            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ apartment.city|upper }}</h5>
-            <h5 class="text-black-50">{{ apartment.description|capfirst }}</h5>
             <div class="d-block agent-box p-5">
+              <h2 class="heading text-primary">{{ apartment.ad_title|title }}</h2>
+              <h5 class="meta"><i class="fa-solid fa-building me-2"></i>{% translate "Apartment" %}</h5>
+              <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ apartment.city|upper }}</h5>
+              <h5 class="text-black-50">{{ apartment.description|capfirst }}</h5><hr>
+              <h5 class="text-black-50">Bedroom: {{ apartment.bedroom }}</h5>
+              <h5 class="text-black-50">Bathroom: {{ apartment.bathroom }}</h5>
+              <h5 class="text-black-50">Area: {{ apartment.area }} Sqft</h5>
+              <h5 class="text-black-50">Floor: {{ apartment.floor }}</h5><hr>
               <div class="text">
                 <h2 class="mb-0">{{ apartment.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ apartment.user.username }}</h3>
@@ -41,6 +45,15 @@
                     {{ apartment.user.phone }} <br> {{ apartment.user.email|urlize }}
                   {% endif %}
                 </h3>
+              </div><hr>
+              <div class="col-sm-12 d-grid gap-3">
+                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                {% if apartment.sale_status != "For Sale" %}
+                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                {% else %}
+                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
+                {% endif %}
+                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
             </div>
           </div>
@@ -59,11 +72,14 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">{{ commercial.ad_title|title }}</h2>
-            <h5 class="meta"><i class="fa-solid fa-city me-2"></i>{% translate "Commercial" %}</h5>
-            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ commercial.city|upper }}</h5>
-            <h5 class="text-black-50">{{ commercial.description|capfirst }}</h5>
             <div class="d-block agent-box p-5">
+              <h2 class="heading text-primary">{{ commercial.ad_title|title }}</h2>
+              <h5 class="meta"><i class="fa-solid fa-city me-2"></i>{% translate "Commercial" %}</h5>
+              <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ commercial.city|upper }}</h5>
+              <h5 class="text-black-50">{{ commercial.description|capfirst }}</h5><hr>
+              <h5 class="text-black-50">Type: {{ commercial.commercial_type }}</h5>
+              <h5 class="text-black-50">Area: {{ commercial.area }} Sqft</h5>
+              <h5 class="text-black-50">Floor: {{ commercial.floor }}</h5><hr>
               <div class="text">
                 <h2 class="mb-0">{{ commercial.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ commecial.user.username }}</h3>
@@ -78,6 +94,15 @@
                     {{ commercial.user.phone }} <br> {{ commercial.user.email|urlize }}
                   {% endif %}
                 </h3>
+              </div><hr>
+              <div class="col-sm-12 d-grid gap-3">
+                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                {% if commercial.sale_status != "For Sale" %}
+                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                {% else %}
+                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
+                {% endif %}
+                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
             </div>
           </div>
@@ -96,11 +121,15 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">{{ house.ad_title|title }}</h2>
-            <h5 class="meta"><i class="fa-solid fa-house me-2"></i>{% translate "House" %}</h5>
-            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ house.city|upper }}</h5>
-            <h5 class="text-black-50">{{ house.description|capfirst }}</h5>
             <div class="d-block agent-box p-5">
+              <h2 class="heading text-primary">{{ house.ad_title|title }}</h2>
+              <h5 class="meta"><i class="fa-solid fa-house me-2"></i>{% translate "House" %}</h5>
+              <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ house.city|upper }}</h5>
+              <h5 class="text-black-50">{{ house.description|capfirst }}</h5><hr>
+              <h5 class="text-black-50">Bedroom: {{ house.bedroom }}</h5>
+              <h5 class="text-black-50">Bathroom: {{ house.bathroom }}</h5>
+              <h5 class="text-black-50">Area: {{ house.area }} Sqft</h5>
+              <h5 class="text-black-50">Floor: {{ house.floor }}</h5><hr>
               <div class="text">
                 <h2 class="mb-0">{{ house.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ house.user.username }}</h3>
@@ -115,6 +144,15 @@
                     {{ house.user.phone }} <br> {{ house.user.email|urlize }}
                   {% endif %}
                 </h3>
+              </div><hr>
+              <div class="col-sm-12 d-grid gap-3">
+                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                {% if house.sale_status != "For Sale" %}
+                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                {% else %}
+                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
+                {% endif %}
+                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
             </div>
           </div>
@@ -133,11 +171,16 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">{{ land.ad_title|title }}</h2>
-            <h5 class="meta"><i class="fa-solid fa-earth me-2"></i>{% translate "Land" %}</h5>
-            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ land.city|upper }}</h5>
-            <h5 class="text-black-50">{{ land.description|capfirst }}</h5>
             <div class="d-block agent-box p-5">
+              <h2 class="heading text-primary">{{ land.ad_title|title }}</h2>
+              <h5 class="meta"><i class="fa-solid fa-earth me-2"></i>{% translate "Land" %}</h5>
+              <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ land.city|upper }}</h5>
+              <h5 class="text-black-50">{{ land.description|capfirst }}</h5><hr>
+              <h5 class="text-black-50">Type: {{ land.land_type }}</h5>
+              <h5 class="text-black-50">Plot area: {{ land.plot_area }} Cent</h5>
+              <h5 class="text-black-50">Length: {{ land.length }}</h5>
+              <h5 class="text-black-50">Breadth: {{ land.breadth }}</h5>
+              <h5 class="text-black-50">Road accessible: {{ land.road_accessible }}</h5><hr>
               <div class="text">
                 <h2 class="mb-0">{{ land.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ land.user.username }}</h3>
@@ -152,6 +195,15 @@
                     {{ land.user.phone }} <br> {{ land.user.email|urlize }}
                   {% endif %}
                 </h3>
+              </div><hr>
+              <div class="col-sm-12 d-grid gap-3">
+                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                {% if land.sale_status != "For Sale" %}
+                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                {% else %}
+                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
+                {% endif %}
+                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
             </div>
           </div>
@@ -170,11 +222,15 @@
             </div>
           </div>
           <div class="col-lg-4">
-            <h2 class="heading text-primary">{{ villa.ad_title|title }}</h2>
-            <h5 class="meta"><i class="fa-solid fa-house-chimney-window me-2"></i>{% translate "Villa" %}</h5>
-            <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ villa.city|upper }}</h5>
-            <h5 class="text-black-50">{{ villa.description|capfirst }}</h5>
             <div class="d-block agent-box p-5">
+              <h2 class="heading text-primary">{{ villa.ad_title|title }}</h2>
+              <h5 class="meta"><i class="fa-solid fa-house-chimney-window me-2"></i>{% translate "Villa" %}</h5>
+              <h5 class="meta mt-2"><i class="fa-solid fa-location-dot me-2"></i>{{ villa.city|upper }}</h5>
+              <h5 class="text-black-50">{{ villa.description|capfirst }}</h5><hr>
+              <h5 class="text-black-50">Bedroom: {{ villa.bedroom }}</h5>
+              <h5 class="text-black-50">Bathroom: {{ villa.bathroom }}</h5>
+              <h5 class="text-black-50">Area: {{ villa.area }} Sqft</h5>
+              <h5 class="text-black-50">Floor: {{ villa.floor }}</h5><hr>
               <div class="text">
                 <h2 class="mb-0">{{ villa.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ villa.user.username }}</h3>
@@ -189,12 +245,19 @@
                     {{ villa.user.phone }} <br> {{ villa.user.email|urlize }}
                   {% endif %}
                 </h3>
+              </div><hr>
+              <div class="col-sm-12 d-grid gap-3">
+                <a class="btn btn-primary" href="" role="button">{% translate "Update" %}</a>
+                {% if villa.sale_status != "For Sale" %}
+                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                {% else %}
+                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
+                {% endif %}
+                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
             </div>
           </div>
           {% endif %}
-
-
         </div>
       </div>
     </div>
