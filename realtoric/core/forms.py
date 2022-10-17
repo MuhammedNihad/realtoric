@@ -1,13 +1,6 @@
 from django import forms
 
-from .models import (
-    Apartment,
-    City,
-    Commercial,
-    House,
-    Land,
-    Villa,
-)
+from .models import Apartment, City, Commercial, House, Land, Villa
 
 
 class PropertyBaseFormMixin(forms.ModelForm):
@@ -16,13 +9,11 @@ class PropertyBaseFormMixin(forms.ModelForm):
     """
 
     images = forms.ImageField(
-        widget=forms.ClearableFileInput(
-            attrs={'multiple': True}),
+        widget=forms.ClearableFileInput(attrs={"multiple": True}),
     )
     city = forms.ModelChoiceField(
         queryset=City.objects.all(),
-        widget=forms.Select(
-            attrs={'class': 'form-control'}),
+        widget=forms.Select(attrs={"class": "form-control"}),
         empty_label="Select City",
     )
 

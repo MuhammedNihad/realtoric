@@ -117,9 +117,7 @@ class Apartment(PropertyBasicDetailMixin, TimeStampMixin):
         default=CountChoice.ONE,
         verbose_name="Bathrooms",
     )
-    area = models.PositiveIntegerField(
-        default=0, verbose_name="Area (sqft)"
-    )
+    area = models.PositiveIntegerField(default=0, verbose_name="Area (sqft)")
     floor = models.PositiveSmallIntegerField(default=0, verbose_name="Total Floors")
 
     class Meta:
@@ -214,9 +212,7 @@ class Commercial(PropertyBasicDetailMixin, TimeStampMixin):
         default=CommercialType.SHOP,
         verbose_name="Commercial Type",
     )
-    area = models.PositiveIntegerField(
-        default=0, verbose_name="Area (sqft)"
-    )
+    area = models.PositiveIntegerField(default=0, verbose_name="Area (sqft)")
     floor = models.PositiveSmallIntegerField(default=0, verbose_name="Total Floors")
 
     class Meta:
@@ -313,9 +309,7 @@ class House(PropertyBasicDetailMixin, TimeStampMixin):
         default=CountChoice.ONE,
         verbose_name="Bathrooms",
     )
-    area = models.PositiveIntegerField(
-        default=0, verbose_name="Area (sqft)"
-    )
+    area = models.PositiveIntegerField(default=0, verbose_name="Area (sqft)")
     floor = models.PositiveSmallIntegerField(default=0, verbose_name="Total Floors")
 
     class Meta:
@@ -517,9 +511,7 @@ class Villa(PropertyBasicDetailMixin, TimeStampMixin):
         default=CountChoice.ONE,
         verbose_name="Bathrooms",
     )
-    area = models.PositiveIntegerField(
-        default=0, verbose_name="Area (sqft)"
-    )
+    area = models.PositiveIntegerField(default=0, verbose_name="Area (sqft)")
     floor = models.PositiveSmallIntegerField(default=0, verbose_name="Total Floors")
 
     class Meta:

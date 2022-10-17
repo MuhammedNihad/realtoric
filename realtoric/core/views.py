@@ -12,14 +12,7 @@ from .forms import (
     LandPostForm,
     VillaPostForm,
 )
-from .models import (
-    Apartment,
-    Commercial,
-    House,
-    Land,
-    Villa,
-    SaleStatus,
-)
+from .models import Apartment, Commercial, House, Land, SaleStatus, Villa
 
 
 class ChoosePropertyCategoryView(LoginRequiredMixin, TemplateView):
@@ -75,7 +68,9 @@ class CommercialPostView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         # Save the commercial properties's images
         images = self.request.FILES.getlist("images")
         for image in images:
-            form.instance.commercial_images.create(commercial=commercial_data, image=image)
+            form.instance.commercial_images.create(
+                commercial=commercial_data, image=image
+            )
         return super().form_valid(form)
 
 
@@ -161,9 +156,9 @@ class AllPropertyListView(ListView):
 
     model = Apartment
     context_object_name = "apartments"
-    queryset = Apartment.objects.filter(
-        sale_status=SaleStatus.FOR_SALE
-    ).order_by("-listed_on")
+    queryset = Apartment.objects.filter(sale_status=SaleStatus.FOR_SALE).order_by(
+        "-listed_on"
+    )
     template_name = "pages/home.html"
 
     def get_context_data(self, **kwargs):
@@ -276,6 +271,3 @@ class VillaDetailView(DetailView):
 
 
 villa_detail_view = VillaDetailView.as_view()
-
-
-
