@@ -81,7 +81,7 @@
                 class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end"
               >
                 <li class="active"><a href="{% url 'core:home' %}">Home</a></li>
-                <li><a href="{% url 'core:post_property' %}">Sell</a></li>
+                <li><a href="{% url 'core:post' %}">Sell</a></li>
                 {% if request.user.is_authenticated %}
                   {# URL provided by django-allauth/account/urls.py #}
                   <li><a href="{% url 'users:detail' request.user.username %}">{% translate "My Account" %}</a></li>

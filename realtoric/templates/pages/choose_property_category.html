@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% translate "Sell Property" %}{% endblock %}
+
+{% block inner %}
+
+  {% block content %}
+
+  <div class="container-fluid" style="margin-top:100px">
+    <div class="row p-5">
+      <div class="col-md-6 d-flex justify-content-center w-100">
+        <h1>{% translate "Choose a category to post" %}</h1>
+      </div>
+    </div>
+
+    <div class="row row-cols-1 row-cols-md-3 g-4 p-5 pt-0">
+      <div class="col">
+        <a href="{% url 'core:apartment_post' %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="meta text-center"><i class="fa-solid fa-building me-2"></i></h2>
+              <h5 class="card-title text-center">{% translate "Apartment" %}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'core:commercial_post' %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="meta text-center"><i class="fa-solid fa-city me-2"></i></h2>
+              <h5 class="card-title text-center">{% translate "Commercial" %}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'core:house_post' %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="meta text-center"><i class="fa-solid fa-house me-2"></i></h2>
+              <h5 class="card-title text-center">{% translate "House" %}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'core:land_post' %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="meta text-center"><i class="fa-solid fa-earth me-2"></i></h2>
+              <h5 class="card-title text-center">{% translate "Land" %}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col">
+        <a href="{% url 'core:villa_post' %}">
+          <div class="card h-100">
+            <div class="card-body">
+              <h2 class="meta text-center"><i class="fa-solid fa-house-chimney-window me-2"></i></h2>
+              <h5 class="card-title text-center">{% translate "Villa" %}</h5>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+  </div>
+  {% endblock content%}
+
+{% endblock %}
