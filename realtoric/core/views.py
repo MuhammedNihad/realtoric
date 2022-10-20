@@ -3,9 +3,10 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import redirect
+from django.contrib import messages
 from django.views.generic import (
     CreateView,
-    DetailView,
     ListView,
     TemplateView,
     UpdateView,
@@ -214,69 +215,174 @@ class PropertySearchResultsView(ListView):
 property_search_results_view = PropertySearchResultsView.as_view()
 
 
-class ApartmentDetailView(DetailView):
+class ApartmentDetailUpdateView(UpdateView):
     """
-    Render apartment details.
+    Render apartment details along with update mark as sold and delete.
     """
 
     model = Apartment
+    fields = ["sale_status"]
     context_object_name = "apartment"
     template_name = "pages/property_detail.html"
 
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            if request.user == self.object.user:
+                if "sold" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("Apartment marked as sold"))
+                    return redirect("core:apartment_detail", slug=self.object.slug)
 
-apartment_detail_view = ApartmentDetailView.as_view()
+                if "delete" in request.POST:
+                    self.object.delete()
+                    messages.success(request, _("Apartment deleted"))
+                    return redirect("core:home")
+            else:
+                messages.error(request, _("You are not authorized to perform this action"))
+        except:
+            messages.error(request, _("Something went wrong"))
 
 
-class CommercialDetailView(DetailView):
+apartment_detail_view = ApartmentDetailUpdateView.as_view()
+
+
+class CommercialDetailUpdateView(UpdateView):
     """
-    Render commercial details.
+    Render commercial details along with update mark as sold and delete.
     """
 
     model = Commercial
+    fields = ["sale_status"]
     context_object_name = "commercial"
     template_name = "pages/property_detail.html"
 
 
-commercial_detail_view = CommercialDetailView.as_view()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            if request.user == self.object.user:
+                if "sold" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("Commercial marked as sold"))
+                    return redirect("core:commercial_detail", slug=self.object.slug)
+
+                if "delete" in request.POST:
+                    self.object.delete()
+                    messages.success(request, _("Commercial deleted"))
+                    return redirect("core:home")
+            else:
+                messages.error(request, _("You are not authorized to perform this action"))
+        except:
+            messages.error(request, _("Something went wrong"))
 
 
-class HouseDetailView(DetailView):
+commercial_detail_view = CommercialDetailUpdateView.as_view()
+
+
+class HouseDetailUpdateView(UpdateView):
     """
-    Render house details.
+    Render house details along with update mark as sold and delete.
     """
 
     model = House
+    fields = ["sale_status"]
     context_object_name = "house"
     template_name = "pages/property_detail.html"
 
 
-house_detail_view = HouseDetailView.as_view()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            if request.user == self.object.user:
+                if "sold" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("House marked as sold"))
+                    return redirect("core:house_detail", slug=self.object.slug)
+
+                if "delete" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("House deleted"))
+                    return redirect("core:home")
+            else:
+                messages.error(request, _("You are not authorized to perform this action"))
+        except:
+            messages.error(request, _("Something went wrong"))
 
 
-class LandDetailView(DetailView):
+house_detail_view = HouseDetailUpdateView.as_view()
+
+
+class LandDetailUpdateView(UpdateView):
     """
-    Render land details.
+    Render land details along with update mark as sold and delete.
     """
 
     model = Land
+    fields = ["sale_status"]
     context_object_name = "land"
     template_name = "pages/property_detail.html"
 
 
-land_detail_view = LandDetailView.as_view()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            if request.user == self.object.user:
+                if "sold" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("Land marked as sold"))
+                    return redirect("core:land_detail", slug=self.object.slug)
+
+                if "delete" in request.POST:
+                    self.object.delete()
+                    messages.success(request, _("Land deleted"))
+                    return redirect("core:home")
+            else:
+                messages.error(request, _("You are not authorized to perform this action"))
+        except:
+            messages.error(request, _("Something went wrong"))
 
 
-class VillaDetailView(DetailView):
+land_detail_view = LandDetailUpdateView.as_view()
+
+
+class VillaDetailUpdateView(UpdateView):
     """
-    Render villa details.
+    Render villa details along with update mark as sold and delete.
     """
 
     model = Villa
+    fields = ["sale_status"]
     context_object_name = "villa"
     template_name = "pages/property_detail.html"
 
 
-villa_detail_view = VillaDetailView.as_view()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        try:
+            if request.user == self.object.user:
+                if "sold" in request.POST:
+                    self.object.sale_status = SaleStatus.SOLD
+                    self.object.save()
+                    messages.success(request, _("Villa marked as sold"))
+                    return redirect("core:villa_detail", slug=self.object.slug)
+
+                if "delete" in request.POST:
+                    self.object.delete()
+                    messages.success(request, _("Villa deleted"))
+                    return redirect("core:home")
+            else:
+                messages.error(request, _("You are not authorized to perform this action"))
+        except:
+            messages.error(request, _("Something went wrong"))
+
+
+villa_detail_view = VillaDetailUpdateView.as_view()
 
 
 class ApartmentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):

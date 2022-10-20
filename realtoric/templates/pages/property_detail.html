@@ -45,16 +45,22 @@
                     {{ apartment.user.phone }} <br> {{ apartment.user.email|urlize }}
                   {% endif %}
                 </h3>
-              </div><hr>
-              <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="{% url 'core:apartment_update' apartment.slug %}" role="button">{% translate "Update" %}</a>
-                {% if apartment.sale_status != "For Sale" %}
-                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
-                {% else %}
-                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
-                {% endif %}
-                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
+              {% if apartment.user == request.user %}
+              <hr>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="col-sm-12 d-grid gap-3">
+                  <a class="btn btn-primary" href="{% url 'core:apartment_update' apartment.slug %}" role="button">{% translate "Update" %}</a>
+                  {% if apartment.sale_status != "For Sale" %}
+                  <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                  {% else %}
+                  <button class="btn btn-warning" role="button" name="sold" onclick="return confirm('Are you sure you want to mark as sold?')" type="submit">{% translate "Mark as Sold" %}</button>
+                  {% endif %}
+                  <button class="btn btn-danger" role="button" name="delete" onclick="return confirm('Are you sure you want to delete?')" type="submit">{% translate "Delete" %}</button>
+                </div>
+              </form>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -94,16 +100,22 @@
                     {{ commercial.user.phone }} <br> {{ commercial.user.email|urlize }}
                   {% endif %}
                 </h3>
-              </div><hr>
-              <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="{% url 'core:commercial_update' commercial.slug %}" role="button">{% translate "Update" %}</a>
-                {% if commercial.sale_status != "For Sale" %}
-                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
-                {% else %}
-                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
-                {% endif %}
-                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
+              {% if commercial.user == request.user %}
+              <hr>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="col-sm-12 d-grid gap-3">
+                  <a class="btn btn-primary" href="{% url 'core:commercial_update' commercial.slug %}" role="button">{% translate "Update" %}</a>
+                  {% if commercial.sale_status != "For Sale" %}
+                  <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                  {% else %}
+                  <button class="btn btn-warning" role="button" name="sold" onclick="return confirm('Are you sure you want to mark as sold?')" type="submit">{% translate "Mark as Sold" %}</button>
+                  {% endif %}
+                  <button class="btn btn-danger" role="button" name="delete" onclick="return confirm('Are you sure you want to delete?')" type="submit">{% translate "Delete" %}</button>
+                </div>
+              </form>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -144,16 +156,22 @@
                     {{ house.user.phone }} <br> {{ house.user.email|urlize }}
                   {% endif %}
                 </h3>
-              </div><hr>
-              <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="{% url 'core:house_update' house.slug %}" role="button">{% translate "Update" %}</a>
-                {% if house.sale_status != "For Sale" %}
-                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
-                {% else %}
-                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
-                {% endif %}
-                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
+              {% if house.user == request.user %}
+              <hr>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="col-sm-12 d-grid gap-3">
+                  <a class="btn btn-primary" href="{% url 'core:house_update' house.slug %}" role="button">{% translate "Update" %}</a>
+                  {% if house.sale_status != "For Sale" %}
+                  <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                  {% else %}
+                  <button class="btn btn-warning" role="button" name="sold" onclick="return confirm('Are you sure you want to mark as sold?')" type="submit">{% translate "Mark as Sold" %}</button>
+                  {% endif %}
+                  <button class="btn btn-danger" role="button" name="delete" onclick="return confirm('Are you sure you want to delete?')" type="submit">{% translate "Delete" %}</button>
+                </div>
+              </form>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -195,16 +213,22 @@
                     {{ land.user.phone }} <br> {{ land.user.email|urlize }}
                   {% endif %}
                 </h3>
-              </div><hr>
-              <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="{% url 'core:land_update' land.slug %}" role="button">{% translate "Update" %}</a>
-                {% if land.sale_status != "For Sale" %}
-                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
-                {% else %}
-                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
-                {% endif %}
-                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
+              {% if land.user == request.user %}
+              <hr>
+              <form method="POST">
+                {% csrf_token %}
+                <div class="col-sm-12 d-grid gap-3">
+                  <a class="btn btn-primary" href="{% url 'core:land_update' land.slug %}" role="button">{% translate "Update" %}</a>
+                  {% if land.sale_status != "For Sale" %}
+                  <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                  {% else %}
+                  <button class="btn btn-warning" role="button" name="sold" onclick="return confirm('Are you sure you want to mark as sold?')" type="submit">{% translate "Mark as Sold" %}</button>
+                  {% endif %}
+                  <button class="btn btn-danger" role="button" name="delete" onclick="return confirm('Are you sure you want to delete?')" type="submit">{% translate "Delete" %}</button>
+                </div>
+              </form>
+              {% endif %}
             </div>
           </div>
           {% endif %}
@@ -245,16 +269,21 @@
                     {{ villa.user.phone }} <br> {{ villa.user.email|urlize }}
                   {% endif %}
                 </h3>
-              </div><hr>
-              <div class="col-sm-12 d-grid gap-3">
-                <a class="btn btn-primary" href="{% url 'core:villa_update' villa.slug %}" role="button">{% translate "Update" %}</a>
-                {% if villa.sale_status != "For Sale" %}
-                <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
-                {% else %}
-                <a class="btn btn-warning" href="" role="button">{% translate "Mark as Sold" %}</a>
-                {% endif %}
-                <a class="btn btn-danger" href="" role="button">{% translate "Delete" %}</a>
               </div>
+              {% if villa.user == request.user %}
+              <hr>
+              <form method="POST">
+                <div class="col-sm-12 d-grid gap-3">
+                  <a class="btn btn-primary" href="{% url 'core:villa_update' villa.slug %}" role="button">{% translate "Update" %}</a>
+                  {% if villa.sale_status != "For Sale" %}
+                  <a class="btn btn-dark disabled" role="button">{% translate "Sold" %}</a>
+                  {% else %}
+                  <button class="btn btn-warning" role="button" name="sold" onclick="return confirm('Are you sure you want to mark as sold?')" type="submit">{% translate "Mark as Sold" %}</button>
+                  {% endif %}
+                  <button class="btn btn-danger" role="button" name="delete" onclick="return confirm('Are you sure you want to delete?')" type="submit">{% translate "Delete" %}</button>
+                </div>
+              </form>
+              {% endif %}
             </div>
           </div>
           {% endif %}
