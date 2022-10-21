@@ -3,6 +3,16 @@ from django import forms
 from .models import Apartment, City, Commercial, House, Land, Villa
 
 
+class SearchForm(forms.Form):
+    city = forms.ModelChoiceField(
+        queryset=City.objects.all(),
+        widget=forms.Select(attrs={"class": "form-control"}),
+        to_field_name="name",
+        empty_label="Cities",
+        label="",
+    )
+
+
 class PropertyBaseFormMixin(forms.ModelForm):
     """
     Form mixin for common fields to prevent code duplication.

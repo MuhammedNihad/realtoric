@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_tags %}
 
 {% block content %}
 
@@ -33,6 +34,7 @@
               data-aos="fade-up"
               data-aos-delay="200"
             >
+              {{ form|crispy }}
               <input
                 type="text"
                 name="search"

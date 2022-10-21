@@ -1,12 +1,14 @@
+from itertools import chain
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.db.models import Q
+from django.shortcuts import redirect
 from django.urls import reverse, reverse_lazy
 from django.utils.translation import gettext_lazy as _
-from django.shortcuts import redirect
-from django.contrib import messages
 from django.views.generic import (
     CreateView,
+    FormView,
     ListView,
     TemplateView,
     UpdateView,
@@ -17,6 +19,7 @@ from .forms import (
     CommercialPostForm,
     HousePostForm,
     LandPostForm,
+    SearchForm,
     VillaPostForm,
 )
 from .models import Apartment, Commercial, House, Land, SaleStatus, Villa
@@ -156,7 +159,7 @@ class VillaPostView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
 villa_post_view = VillaPostView.as_view()
 
 
-class AllPropertyListView(ListView):
+class AllPropertyListView(ListView, FormView):
     """
     Render properties for sale in home page.
     """
@@ -167,6 +170,7 @@ class AllPropertyListView(ListView):
         "-listed_on"
     )
     template_name = "pages/home.html"
+    form_class = SearchForm
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -193,24 +197,27 @@ class PropertySearchResultsView(ListView):
     Render search results.
     """
 
-    pass
-    # model = Property
-    # context_object_name = "properties"
-    # template_name = "pages/search_results.html"
+    context_object_name = "properties"
+    template_name = "pages/search_results.html"
 
-    # def get_queryset(self):
-    #     """
-    #     Return search results.
-    #     """
+    def get_queryset(self):
+        """
+        Return search results.
+        """
 
-    #     query = self.request.GET.get("search")
-    #     return Property.objects.filter(
-    #         Q(name__icontains=query)
-    #         | Q(description__icontains=query)
-    #         | Q(address__icontains=query)
-    #         | Q(city__icontains=query)
-    #     ).order_by("-created")
+        query = self.request.GET.get("search", None)
+        city = self.request.GET.get("city", None)
 
+        if query and city:
+            apartment = Apartment.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+            commercial = Commercial.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+            house = House.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+            land = Land.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+            villa = Villa.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+
+            return list(chain(apartment, commercial, house, land, villa))
+        else:
+            messages.error(self.request, _("No results found."))
 
 property_search_results_view = PropertySearchResultsView.as_view()
 
@@ -240,7 +247,9 @@ class ApartmentDetailUpdateView(UpdateView):
                     messages.success(request, _("Apartment deleted"))
                     return redirect("core:home")
             else:
-                messages.error(request, _("You are not authorized to perform this action"))
+                messages.error(
+                    request, _("You are not authorized to perform this action")
+                )
         except:
             messages.error(request, _("Something went wrong"))
 
@@ -258,7 +267,6 @@ class CommercialDetailUpdateView(UpdateView):
     context_object_name = "commercial"
     template_name = "pages/property_detail.html"
 
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
@@ -274,7 +282,9 @@ class CommercialDetailUpdateView(UpdateView):
                     messages.success(request, _("Commercial deleted"))
                     return redirect("core:home")
             else:
-                messages.error(request, _("You are not authorized to perform this action"))
+                messages.error(
+                    request, _("You are not authorized to perform this action")
+                )
         except:
             messages.error(request, _("Something went wrong"))
 
@@ -292,7 +302,6 @@ class HouseDetailUpdateView(UpdateView):
     context_object_name = "house"
     template_name = "pages/property_detail.html"
 
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
@@ -309,7 +318,9 @@ class HouseDetailUpdateView(UpdateView):
                     messages.success(request, _("House deleted"))
                     return redirect("core:home")
             else:
-                messages.error(request, _("You are not authorized to perform this action"))
+                messages.error(
+                    request, _("You are not authorized to perform this action")
+                )
         except:
             messages.error(request, _("Something went wrong"))
 
@@ -327,7 +338,6 @@ class LandDetailUpdateView(UpdateView):
     context_object_name = "land"
     template_name = "pages/property_detail.html"
 
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
@@ -343,7 +353,9 @@ class LandDetailUpdateView(UpdateView):
                     messages.success(request, _("Land deleted"))
                     return redirect("core:home")
             else:
-                messages.error(request, _("You are not authorized to perform this action"))
+                messages.error(
+                    request, _("You are not authorized to perform this action")
+                )
         except:
             messages.error(request, _("Something went wrong"))
 
@@ -361,7 +373,6 @@ class VillaDetailUpdateView(UpdateView):
     context_object_name = "villa"
     template_name = "pages/property_detail.html"
 
-
     def post(self, request, *args, **kwargs):
         self.object = self.get_object()
         try:
@@ -377,7 +388,9 @@ class VillaDetailUpdateView(UpdateView):
                     messages.success(request, _("Villa deleted"))
                     return redirect("core:home")
             else:
-                messages.error(request, _("You are not authorized to perform this action"))
+                messages.error(
+                    request, _("You are not authorized to perform this action")
+                )
         except:
             messages.error(request, _("Something went wrong"))
 

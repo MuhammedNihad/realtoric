@@ -42,48 +42,145 @@
 
             {% if properties %}
             {% for property in properties %}
-            <a href="{{ property.get_absolute_url }}">
+              {% if property.apartment_images %}
               <div class="col">
-                <div class="card h-100">
-                    <img src="{{ property.image.url }}" class="card-img-top" alt="{{ property.name }}">
+                <a href="{{ property.get_absolute_url }}">
+                  <div class="card h-100">
+                    {% for image_as_thumbnail in property.apartment_images.all %}
+                      {% if forloop.first %}
+                      <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.ad_title }}">
+                      {% endif %}
+                    {% endfor %}
                     <div class="card-body">
-                      <h3 class="card-title">{{ property.name|title }}</h4>
-                    <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
-                    <div class="specs d-flex mt-4">
-                      <span class="d-block d-flex align-items-center me-3">
-
-                        {% if property.type == "House" %}
-                          <i class="fa-solid fa-house"></i>
-                          <span class="caption ms-2">House</span>
-
-                        {% elif property.type == "Apartment" %}
+                      <h3 class="card-title">{{ property.ad_title|title }}</h4>
+                      <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                      <div class="specs d-flex mt-4">
+                        <span class="d-block d-flex align-items-center me-3">
                           <i class="fa-solid fa-building"></i>
                           <span class="caption ms-2">Apartment</span>
-
-                        {% elif property.type == "Villa" %}
-                          <i class="fa-solid fa-house-chimney-window"></i>
-                          <span class="caption ms-2">Villa</span>
-
-                        {% elif property.type == "Commercial" %}
-                          <i class="fa-solid fa-city"></i>
-                          <span class="caption ms-2">Commercial</span>
-
-                        {% else %}
-                          <i class="fa-solid fa-earth"></i>
-                          <span class="caption ms-2">Land</span>
-                        {% endif %}
-
-                      </span>
-                      <span class="d-block d-flex align-items-center">
-                        <i class="fa-solid fa-location-dot"></i>
-                        <span class="caption ms-2">{{ property.city|upper }}</span>
-                      </span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span class="caption ms-2">{{ property.city|upper }}</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
-            </a>
-          </div>
+              {% endif %}
+
+              {% if property.commercial_images %}
+              <div class="col">
+                <a href="{{ property.get_absolute_url }}">
+                  <div class="card h-100">
+                    {% for image_as_thumbnail in property.commercial_images.all %}
+                      {% if forloop.first %}
+                      <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.ad_title }}">
+                      {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
+                      <h3 class="card-title">{{ property.ad_title|title }}</h4>
+                      <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                      <div class="specs d-flex mt-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <i class="fa-solid fa-city"></i>
+                          <span class="caption ms-2">Commercial</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span class="caption ms-2">{{ property.city|upper }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endif %}
+
+              {% if property.house_images %}
+              <div class="col">
+                <a href="{{ property.get_absolute_url }}">
+                  <div class="card h-100">
+                    {% for image_as_thumbnail in property.house_images.all %}
+                      {% if forloop.first %}
+                      <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.ad_title }}">
+                      {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
+                      <h3 class="card-title">{{ property.ad_title|title }}</h4>
+                      <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                      <div class="specs d-flex mt-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <i class="fa-solid fa-house"></i>
+                          <span class="caption ms-2">House</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span class="caption ms-2">{{ property.city|upper }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endif %}
+
+              {% if property.land_images %}
+              <div class="col">
+                <a href="{{ property.get_absolute_url }}">
+                  <div class="card h-100">
+                    {% for image_as_thumbnail in property.land_images.all %}
+                      {% if forloop.first %}
+                      <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.ad_title }}">
+                      {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
+                      <h3 class="card-title">{{ property.ad_title|title }}</h4>
+                      <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                      <div class="specs d-flex mt-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <i class="fa-solid fa-earth"></i>
+                          <span class="caption ms-2">Land</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span class="caption ms-2">{{ property.city|upper }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              {% endif %}
+
+              {% if property.villa_images %}
+              <div class="col">
+                <a href="{{ property.get_absolute_url }}">
+                  <div class="card h-100">
+                    {% for image_as_thumbnail in property.villa_images.all %}
+                      {% if forloop.first %}
+                      <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ property.ad_title }}">
+                      {% endif %}
+                    {% endfor %}
+                    <div class="card-body">
+                      <h3 class="card-title">{{ property.ad_title|title }}</h4>
+                      <h6 class="card-text">{{ property.description|capfirst|truncatewords:6 }}</h6>
+                      <div class="specs d-flex mt-4">
+                        <span class="d-block d-flex align-items-center me-3">
+                          <i class="fa-solid fa-house-chimney-window"></i>
+                          <span class="caption ms-2">Villa</span>
+                        </span>
+                        <span class="d-block d-flex align-items-center">
+                          <i class="fa-solid fa-location-dot"></i>
+                          <span class="caption ms-2">{{ property.city|upper }}</span>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            {% endif %}
           {% endfor %}
           {% else %}
           <div class="col">
