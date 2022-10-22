@@ -9768,6 +9768,17 @@ textarea {
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none; }
+.search-result .choose-city-dropdown{
+  width: auto;
+  height: 136%;
+  border-radius: 50px;
+  background-color: #fff;
+  border: 1px solid #8B85C1;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}
 
 .section {
   padding-top: 4rem;
@@ -10398,3 +10409,14 @@ nav[aria-label="breadcrumb"] li:before {
       .site-footer .social li a:hover {
         background: #1c1f50;
         color: #fff; }
+.choose-city-dropdown{
+  width: auto;
+  height: 136%;
+  border-radius: 50px;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+}

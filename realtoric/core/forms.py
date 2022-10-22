@@ -6,7 +6,7 @@ from .models import Apartment, City, Commercial, House, Land, Villa
 class SearchForm(forms.Form):
     city = forms.ModelChoiceField(
         queryset=City.objects.all(),
-        widget=forms.Select(attrs={"class": "form-control"}),
+        widget=forms.Select(attrs={"class": "form-select-sm choose-city-dropdown"}),
         to_field_name="name",
         empty_label="Cities",
         label="",

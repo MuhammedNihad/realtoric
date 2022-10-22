@@ -192,13 +192,14 @@ class AllPropertyListView(ListView, FormView):
 property_list_view = AllPropertyListView.as_view()
 
 
-class PropertySearchResultsView(ListView):
+class PropertySearchResultsView(ListView, FormView):
     """
     Render search results.
     """
 
     context_object_name = "properties"
     template_name = "pages/search_results.html"
+    form_class = SearchForm
 
     def get_queryset(self):
         """
