@@ -1,4 +1,5 @@
 from itertools import chain
+
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -210,15 +211,26 @@ class PropertySearchResultsView(ListView, FormView):
         city = self.request.GET.get("city", None)
 
         if query and city:
-            apartment = Apartment.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
-            commercial = Commercial.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
-            house = House.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
-            land = Land.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
-            villa = Villa.objects.filter(Q(city__icontains=city) & Q(ad_title__icontains=query))
+            apartment = Apartment.objects.filter(
+                Q(city__icontains=city) & Q(ad_title__icontains=query)
+            )
+            commercial = Commercial.objects.filter(
+                Q(city__icontains=city) & Q(ad_title__icontains=query)
+            )
+            house = House.objects.filter(
+                Q(city__icontains=city) & Q(ad_title__icontains=query)
+            )
+            land = Land.objects.filter(
+                Q(city__icontains=city) & Q(ad_title__icontains=query)
+            )
+            villa = Villa.objects.filter(
+                Q(city__icontains=city) & Q(ad_title__icontains=query)
+            )
 
             return list(chain(apartment, commercial, house, land, villa))
         else:
             messages.error(self.request, _("No results found."))
+
 
 property_search_results_view = PropertySearchResultsView.as_view()
 
@@ -251,7 +263,7 @@ class ApartmentDetailUpdateView(UpdateView):
                 messages.error(
                     request, _("You are not authorized to perform this action")
                 )
-        except:
+        except Exception:
             messages.error(request, _("Something went wrong"))
 
 
@@ -286,7 +298,7 @@ class CommercialDetailUpdateView(UpdateView):
                 messages.error(
                     request, _("You are not authorized to perform this action")
                 )
-        except:
+        except Exception:
             messages.error(request, _("Something went wrong"))
 
 
@@ -322,7 +334,7 @@ class HouseDetailUpdateView(UpdateView):
                 messages.error(
                     request, _("You are not authorized to perform this action")
                 )
-        except:
+        except Exception:
             messages.error(request, _("Something went wrong"))
 
 
@@ -357,7 +369,7 @@ class LandDetailUpdateView(UpdateView):
                 messages.error(
                     request, _("You are not authorized to perform this action")
                 )
-        except:
+        except Exception:
             messages.error(request, _("Something went wrong"))
 
 
@@ -392,7 +404,7 @@ class VillaDetailUpdateView(UpdateView):
                 messages.error(
                     request, _("You are not authorized to perform this action")
                 )
-        except:
+        except Exception:
             messages.error(request, _("Something went wrong"))
 
 
