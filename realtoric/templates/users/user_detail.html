@@ -36,5 +36,164 @@
       </div>
     </div>
   </div>
+
+<!-- My properties list section -->
+<div class="section">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h2 class="font-weight-bold text-primary heading">
+          My Properties
+        </h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+
+        {% for apartment in apartments %}
+        <div class="col">
+          <a href="{{ apartment.get_absolute_url }}">
+            <div class="card h-100">
+              {% for image_as_thumbnail in apartment.apartment_images.all %}
+                {% if forloop.first %}
+                <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ apartment.ad_title }}">
+                {% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h3 class="card-title">{{ apartment.ad_title|title }}</h4>
+                <h6 class="card-text">{{ apartment.description|capfirst|truncatewords:6 }}</h6>
+                <div class="specs d-flex mt-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <i class="fa-solid fa-building"></i>
+                    <span class="caption ms-2">Apartment</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="caption ms-2">{{ apartment.city|upper }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+        {% for commercial in commercials %}
+        <div class="col">
+          <a href="{{ commercial.get_absolute_url }}">
+            <div class="card h-100">
+              {% for image_as_thumbnail in commercial.commercial_images.all %}
+                {% if forloop.first %}
+                <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ commercial.ad_title }}">
+                {% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h3 class="card-title">{{ commercial.ad_title|title }}</h4>
+                <h6 class="card-text">{{ commercial.description|capfirst|truncatewords:6 }}</h6>
+                <div class="specs d-flex mt-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <i class="fa-solid fa-city"></i>
+                    <span class="caption ms-2">Commercial</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="caption ms-2">{{ commercial.city|upper }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+        {% for house in houses %}
+        <div class="col">
+          <a href="{{ house.get_absolute_url }}">
+            <div class="card h-100">
+              {% for image_as_thumbnail in house.house_images.all %}
+                {% if forloop.first %}
+                <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ house.ad_title }}">
+                {% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h3 class="card-title">{{ house.ad_title|title }}</h4>
+                <h6 class="card-text">{{ house.description|capfirst|truncatewords:6 }}</h6>
+                <div class="specs d-flex mt-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="caption ms-2">House</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="caption ms-2">{{ house.city|upper }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+        {% for land in lands %}
+        <div class="col">
+          <a href="{{ land.get_absolute_url }}">
+            <div class="card h-100">
+              {% for image_as_thumbnail in land.land_images.all %}
+                {% if forloop.first %}
+                <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ land.ad_title }}">
+                {% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h3 class="card-title">{{ land.ad_title|title }}</h4>
+                <h6 class="card-text">{{ land.description|capfirst|truncatewords:6 }}</h6>
+                <div class="specs d-flex mt-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <i class="fa-solid fa-earth"></i>
+                    <span class="caption ms-2">Land</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="caption ms-2">{{ land.city|upper }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+        {% for villa in villas %}
+        <div class="col">
+          <a href="{{ villa.get_absolute_url }}">
+            <div class="card h-100">
+              {% for image_as_thumbnail in villa.villa_images.all %}
+                {% if forloop.first %}
+                <img src="{{ image_as_thumbnail.image.url }}" class="card-img-top" alt="{{ villa.ad_title }}">
+                {% endif %}
+              {% endfor %}
+              <div class="card-body">
+                <h3 class="card-title">{{ villa.ad_title|title }}</h4>
+                <h6 class="card-text">{{ villa.description|capfirst|truncatewords:6 }}</h6>
+                <div class="specs d-flex mt-4">
+                  <span class="d-block d-flex align-items-center me-3">
+                    <i class="fa-solid fa-house-chimney-window"></i>
+                    <span class="caption ms-2">Villa</span>
+                  </span>
+                  <span class="d-block d-flex align-items-center">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span class="caption ms-2">{{ villa.city|upper }}</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
+</div> <!-- My properties list section -->
+
 </div>
 {% endblock content %}

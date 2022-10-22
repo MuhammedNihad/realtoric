@@ -5,6 +5,8 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import DetailView, RedirectView, UpdateView
 
+from realtoric.core.models import Apartment, Commercial, House, Land, Villa
+
 User = get_user_model()
 
 
@@ -13,6 +15,25 @@ class UserDetailView(LoginRequiredMixin, DetailView):
     model = User
     slug_field = "username"
     slug_url_kwarg = "username"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["apartments"] = Apartment.objects.filter(
+            user=self.request.user
+        ).order_by("-listed_on")
+        context["houses"] = House.objects.filter(user=self.request.user).order_by(
+            "-listed_on"
+        )
+        context["lands"] = Land.objects.filter(user=self.request.user).order_by(
+            "-listed_on"
+        )
+        context["villas"] = Villa.objects.filter(user=self.request.user).order_by(
+            "-listed_on"
+        )
+        context["commercials"] = Commercial.objects.filter(
+            user=self.request.user
+        ).order_by("-listed_on")
+        return context
 
 
 user_detail_view = UserDetailView.as_view()
