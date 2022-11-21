@@ -12,19 +12,11 @@
           <form
             action="{% url 'core:search_results' %}"
             method="GET"
-            class="narrow-w form-search d-flex align-items-stretch"
+            class="narrow-w form-search d-flex align-items-stretch justify-content-center"
             data-aos="fade-up"
             data-aos-delay="200"
           >
             {{ form|crispy }}
-            <input
-              required
-              type="text"
-              name="search"
-              class="form-control px-4"
-              value="{{ request.GET.search }}"
-              placeholder="Choose city and search..."
-            />
             <button type="submit" class="btn btn-primary">Search</button>
           </form>
         </div>
@@ -36,7 +28,7 @@
         <div class="row align-items-center">
           <div class="col-lg-6">
             <h2 class="font-weight-bold text-primary heading">
-              Search results for "{{ request.GET.search }}":
+              Search results for "{{ request.GET.category }} in {{ request.GET.city }}":
             </h2>
           </div>
         </div>
@@ -189,7 +181,7 @@
           <div class="col">
             <div class="alert alert-danger d-flex align-items-center" role="alert">
                 <h4>
-                  No results found for "{{ request.GET.search }}"!
+                  No results found!
                 </h4>
             </div>
           </div>

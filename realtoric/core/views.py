@@ -1,5 +1,3 @@
-from itertools import chain
-
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
@@ -207,29 +205,31 @@ class PropertySearchResultsView(ListView, FormView):
         Return search results.
         """
 
-        query = self.request.GET.get("search", None)
         city = self.request.GET.get("city", None)
+        category = self.request.GET.get("category", None)
 
-        if query and city:
-            apartment = Apartment.objects.filter(
-                Q(city__icontains=city) & Q(ad_title__icontains=query)
-            )
-            commercial = Commercial.objects.filter(
-                Q(city__icontains=city) & Q(ad_title__icontains=query)
-            )
-            house = House.objects.filter(
-                Q(city__icontains=city) & Q(ad_title__icontains=query)
-            )
-            land = Land.objects.filter(
-                Q(city__icontains=city) & Q(ad_title__icontains=query)
-            )
-            villa = Villa.objects.filter(
-                Q(city__icontains=city) & Q(ad_title__icontains=query)
-            )
+        if city and category:
+            if category == "Apartment":
+                apartment = Apartment.objects.filter(Q(city__icontains=city))
+                return apartment
 
-            return list(chain(apartment, commercial, house, land, villa))
+            elif category == "Commercial":
+                commercial = Commercial.objects.filter(Q(city__icontains=city))
+                return commercial
+
+            elif category == "House":
+                house = House.objects.filter(Q(city__icontains=city))
+                return house
+
+            elif category == "Land":
+                land = Land.objects.filter(Q(city__icontains=city))
+                return land
+
+            elif category == "Villa":
+                villa = Villa.objects.filter(Q(city__icontains=city))
+                return villa
         else:
-            messages.error(self.request, _("No results found."))
+            messages.error(self.request, _("Something went wrong."))
 
 
 property_search_results_view = PropertySearchResultsView.as_view()
@@ -468,7 +468,6 @@ class CommercialUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
             )
         return super().form_valid(form)
 
-
     def get_success_url(self):
         return reverse("core:commercial_detail", kwargs={"slug": self.object.slug})
 
@@ -499,7 +498,6 @@ class HouseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
         for image in images:
             form.instance.house_images.create(house=house_data, image=image)
         return super().form_valid(form)
-
 
     def get_success_url(self):
         return reverse("core:house_detail", kwargs={"slug": self.object.slug})

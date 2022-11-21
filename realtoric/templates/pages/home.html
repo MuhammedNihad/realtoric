@@ -30,18 +30,11 @@
             <form
               action="{% url 'core:search_results' %}"
               method="GET"
-              class="narrow-w form-search d-flex align-items-stretch mb-3"
+              class="narrow-w form-search d-flex align-items-stretch justify-content-center mb-3"
               data-aos="fade-up"
               data-aos-delay="200"
             >
               {{ form|crispy }}
-              <input
-                required
-                type="text"
-                name="search"
-                class="form-control px-4"
-                placeholder="Choose city and search..."
-              />
               <button type="submit" class="btn btn-primary">Search</button>
             </form>
           </div>

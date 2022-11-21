@@ -4,12 +4,28 @@ from .models import Apartment, City, Commercial, House, Land, Villa
 
 
 class SearchForm(forms.Form):
+    CATEGORY_CHOICES = (
+        ("", "Choose property category"),
+        ("Apartment", "Apartments"),
+        ("Commercial", "Commercials"),
+        ("House", "Houses"),
+        ("Land", "Lands"),
+        ("Villa", "Villas"),
+    )
+
     city = forms.ModelChoiceField(
         queryset=City.objects.all(),
         widget=forms.Select(attrs={"class": "form-select-sm choose-city-dropdown"}),
         to_field_name="name",
-        empty_label="Cities",
+        empty_label="Choose City",
         label="",
+    )
+
+    category = forms.ChoiceField(
+        choices=CATEGORY_CHOICES,
+        widget=forms.Select(attrs={"class": "form-select-sm choose-city-dropdown"}),
+        label="",
+        required=True,
     )
 
 
