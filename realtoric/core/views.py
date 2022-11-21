@@ -421,6 +421,20 @@ class ApartmentUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "pages/post_property.html"
     success_message = _("Apartment updated successfully")
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        apartment_data = form.save()
+
+        # Delete existing images of the apartment instance
+        for old_image in form.instance.apartment_images.all():
+            old_image.delete()
+
+        # Create new apartment images for the instance
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.apartment_images.create(apartment=apartment_data, image=image)
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse("core:apartment_detail", kwargs={"slug": self.object.slug})
 
@@ -437,6 +451,23 @@ class CommercialUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = CommercialPostForm
     template_name = "pages/post_property.html"
     success_message = _("Commercial updated successfully")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        commercial_data = form.save()
+
+        # Delete existing images of the commercial instance
+        for old_image in form.instance.commercial_images.all():
+            old_image.delete()
+
+        # Create new commercial images for the instance
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.commercial_images.create(
+                commercial=commercial_data, image=image
+            )
+        return super().form_valid(form)
+
 
     def get_success_url(self):
         return reverse("core:commercial_detail", kwargs={"slug": self.object.slug})
@@ -455,6 +486,21 @@ class HouseUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "pages/post_property.html"
     success_message = _("House updated successfully")
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        house_data = form.save()
+
+        # Delete existing images of the house instance
+        for old_image in form.instance.house_images.all():
+            old_image.delete()
+
+        # Create new house images for the instance
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.house_images.create(house=house_data, image=image)
+        return super().form_valid(form)
+
+
     def get_success_url(self):
         return reverse("core:house_detail", kwargs={"slug": self.object.slug})
 
@@ -472,6 +518,20 @@ class LandUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     template_name = "pages/post_property.html"
     success_message = _("Land updated successfully")
 
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        land_data = form.save()
+
+        # Delete existing images of the land instance
+        for old_image in form.instance.land_images.all():
+            old_image.delete()
+
+        # Create new land images for the instance
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.land_images.create(land=land_data, image=image)
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse("core:land_detail", kwargs={"slug": self.object.slug})
 
@@ -488,6 +548,20 @@ class VillaUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     form_class = VillaPostForm
     template_name = "pages/post_property.html"
     success_message = _("Villa updated successfully")
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        villa_data = form.save()
+
+        # Delete existing images of the villa instance
+        for old_image in form.instance.villa_images.all():
+            old_image.delete()
+
+        # Create new villa images for the instance
+        images = self.request.FILES.getlist("images")
+        for image in images:
+            form.instance.villa_images.create(villa=villa_data, image=image)
+        return super().form_valid(form)
 
     def get_success_url(self):
         return reverse("core:villa_detail", kwargs={"slug": self.object.slug})
