@@ -35,8 +35,8 @@
                 <h2 class="mb-0">{{ apartment.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ apartment.user.username }}</h3>
                 <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ apartment.address|capfirst }}</h3>
-                {% if apartment.google_maps %}
-                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ apartment.google_maps|urlize }}</h3>
+                {% if apartment.google_map %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ apartment.google_map|urlize }}</h3>
                 {% endif %}
                 <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
                   {% if apartment.contact_info %}
@@ -90,8 +90,8 @@
                 <h2 class="mb-0">{{ commercial.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ commecial.user.username }}</h3>
                 <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ commercial.address|capfirst }}</h3>
-                {% if commercial.google_maps %}
-                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ commercial.google_maps|urlize }}</h3>
+                {% if commercial.google_map %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ commercial.google_map|urlize }}</h3>
                 {% endif %}
                 <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
                   {% if commercial.contact_info %}
@@ -146,8 +146,8 @@
                 <h2 class="mb-0">{{ house.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ house.user.username }}</h3>
                 <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ house.address|capfirst }}</h3>
-                {% if house.google_maps %}
-                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ house.google_maps|urlize }}</h3>
+                {% if house.google_map %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ house.google_map|urlize }}</h3>
                 {% endif %}
                 <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
                   {% if house.contact_info %}
@@ -203,8 +203,8 @@
                 <h2 class="mb-0">{{ land.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ land.user.username }}</h3>
                 <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ land.address|capfirst }}</h3>
-                {% if land.google_maps %}
-                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ land.google_maps|urlize }}</h3>
+                {% if land.google_map %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ land.google_map|urlize }}</h3>
                 {% endif %}
                 <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
                   {% if land.contact_info %}
@@ -259,8 +259,8 @@
                 <h2 class="mb-0">{{ villa.user|capfirst }}</h2>
                 <h3 class="meta mb-4">{{ villa.user.username }}</h3>
                 <h3 class="meta mb-3"><b>{% translate "Address:" %}</b><br>{{ villa.address|capfirst }}</h3>
-                {% if villa.google_maps %}
-                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ villa.google_maps|urlize }}</h3>
+                {% if villa.google_map %}
+                  <h3 class="meta mb-3"><b>{% translate "Location:" %}</b><br> {{ villa.google_map|urlize }}</h3>
                 {% endif %}
                 <h3 class="meta"><b>{% translate "Contact Information:" %}</b><br>
                   {% if villa.contact_info %}
