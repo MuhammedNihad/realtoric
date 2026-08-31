@@ -1,6 +1,7 @@
 """
 Module for all Form Tests.
 """
+
 from django.utils.translation import gettext_lazy as _
 
 from realtoric.users.forms import UserAdminCreationForm
